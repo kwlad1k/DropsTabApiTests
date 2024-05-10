@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "email": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "role": {
+      "type": "string"
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "globalInitialType": {
+          "type": "string"
+        },
+        "timeframe": {
+          "type": "string"
+        },
+        "showHeader": {
+          "type": "boolean"
+        },
+        "onlyVerifiedVolumes": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "globalInitialType",
+        "timeframe",
+        "showHeader",
+        "onlyVerifiedVolumes"
+      ]
+    },
+    "profileImage": {
+      "type": "null"
+    },
+    "isBannedForSharePreset": {
+      "type": "boolean"
+    },
+    "presetOrderById": {
+      "type": "array",
+      "items": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer"
+        }
+      ]
+    },
+    "selectedPresetGuid": {
+      "type": "null"
+    },
+    "shareType": {
+      "type": "string"
+    },
+    "sharingUsers": {
+      "type": "null"
+    }
+  },
+  "required": [
+    "id",
+    "email",
+    "username",
+    "enabled",
+    "role",
+    "options",
+    "profileImage",
+    "isBannedForSharePreset",
+    "presetOrderById",
+    "selectedPresetGuid",
+    "shareType",
+    "sharingUsers"
+  ]
+}

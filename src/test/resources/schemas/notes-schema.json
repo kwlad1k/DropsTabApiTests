@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "note": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "id",
+            "note",
+            "updatedAt"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "note": {
+              "type": "string"
+            },
+            "updatedAt": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "id",
+            "note",
+            "updatedAt"
+          ]
+        }
+      ]
+    },
+    "pageable": {
+      "type": "object",
+      "properties": {
+        "sort": {
+          "type": "object",
+          "properties": {
+            "empty": {
+              "type": "boolean"
+            },
+            "sorted": {
+              "type": "boolean"
+            },
+            "unsorted": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "empty",
+            "sorted",
+            "unsorted"
+          ]
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        },
+        "pageNumber": {
+          "type": "integer"
+        },
+        "paged": {
+          "type": "boolean"
+        },
+        "unpaged": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "sort",
+        "offset",
+        "pageSize",
+        "pageNumber",
+        "paged",
+        "unpaged"
+      ]
+    },
+    "last": {
+      "type": "boolean"
+    },
+    "totalPages": {
+      "type": "integer"
+    },
+    "totalElements": {
+      "type": "integer"
+    },
+    "first": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "sort": {
+      "type": "object",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "sorted": {
+          "type": "boolean"
+        },
+        "unsorted": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "empty",
+        "sorted",
+        "unsorted"
+      ]
+    },
+    "numberOfElements": {
+      "type": "integer"
+    },
+    "empty": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "content",
+    "pageable",
+    "last",
+    "totalPages",
+    "totalElements",
+    "first",
+    "size",
+    "number",
+    "sort",
+    "numberOfElements",
+    "empty"
+  ]
+}

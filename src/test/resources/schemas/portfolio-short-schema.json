@@ -1,0 +1,2159 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "btcPriceUsd": {
+      "type": "string"
+    },
+    "btcChange24h": {
+      "type": "string"
+    },
+    "ethPriceUsd": {
+      "type": "string"
+    },
+    "ethChange24h": {
+      "type": "string"
+    },
+    "btcDominance": {
+      "type": "string"
+    },
+    "globalInitialType": {
+      "type": "string"
+    },
+    "portfolioGroups": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "username": {
+              "type": "string"
+            },
+            "profileImage": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "sortOrder": {
+              "type": "integer"
+            },
+            "shareType": {
+              "type": "string"
+            },
+            "portfolioSharingType": {
+              "type": "string"
+            },
+            "isSharingPublic": {
+              "type": "boolean"
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "chartTimeframe": {
+                  "type": "string"
+                },
+                "showChart": {
+                  "type": "boolean"
+                },
+                "showSmallHoldings": {
+                  "type": "boolean"
+                },
+                "showHoldingsShareChart": {
+                  "type": "boolean"
+                },
+                "showUpcomingEvents": {
+                  "type": "boolean"
+                },
+                "showNotes": {
+                  "type": "boolean"
+                },
+                "portfolioTimeframe": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string"
+                },
+                "topPerformance": {
+                  "type": "boolean"
+                },
+                "includeInTotal": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "chartTimeframe",
+                "showChart",
+                "showSmallHoldings",
+                "showHoldingsShareChart",
+                "showUpcomingEvents",
+                "showNotes",
+                "portfolioTimeframe",
+                "color",
+                "topPerformance",
+                "includeInTotal"
+              ]
+            },
+            "portfolioTotal": {
+              "type": "object",
+              "properties": {
+                "totalCap": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "string"
+                    },
+                    "BTC": {
+                      "type": "string"
+                    },
+                    "ETH": {
+                      "type": "string"
+                    },
+                    "BNB": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                },
+                "initialCap": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "string"
+                    },
+                    "BTC": {
+                      "type": "string"
+                    },
+                    "ETH": {
+                      "type": "string"
+                    },
+                    "BNB": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                },
+                "netChangeAbsolute": {
+                  "type": "object",
+                  "properties": {
+                    "1H": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1D": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1W": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1M": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "3M": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "6M": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "YTD": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1Y": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "ALL": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "1H",
+                    "1D",
+                    "1W",
+                    "1M",
+                    "3M",
+                    "6M",
+                    "YTD",
+                    "1Y",
+                    "ALL"
+                  ]
+                },
+                "netChangePercent": {
+                  "type": "object",
+                  "properties": {
+                    "1H": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1D": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1W": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1M": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "3M": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "6M": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "YTD": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "1Y": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "ALL": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "1H",
+                    "1D",
+                    "1W",
+                    "1M",
+                    "3M",
+                    "6M",
+                    "YTD",
+                    "1Y",
+                    "ALL"
+                  ]
+                },
+                "profit": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "string"
+                    },
+                    "BTC": {
+                      "type": "string"
+                    },
+                    "ETH": {
+                      "type": "string"
+                    },
+                    "BNB": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                },
+                "change": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "string"
+                    },
+                    "BTC": {
+                      "type": "string"
+                    },
+                    "ETH": {
+                      "type": "string"
+                    },
+                    "BNB": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                },
+                "change24hPercent": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "string"
+                    },
+                    "BTC": {
+                      "type": "string"
+                    },
+                    "ETH": {
+                      "type": "string"
+                    },
+                    "BNB": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                },
+                "change24hAbsolute": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "string"
+                    },
+                    "BTC": {
+                      "type": "string"
+                    },
+                    "ETH": {
+                      "type": "string"
+                    },
+                    "BNB": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                },
+                "hideAmounts": {
+                  "type": "boolean"
+                },
+                "totalRealizedProfit": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "integer"
+                    },
+                    "BTC": {
+                      "type": "integer"
+                    },
+                    "ETH": {
+                      "type": "integer"
+                    },
+                    "BNB": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                },
+                "totalUnrealizedProfit": {
+                  "type": "object",
+                  "properties": {
+                    "USD": {
+                      "type": "integer"
+                    },
+                    "BTC": {
+                      "type": "integer"
+                    },
+                    "ETH": {
+                      "type": "integer"
+                    },
+                    "BNB": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "USD",
+                    "BTC",
+                    "ETH",
+                    "BNB"
+                  ]
+                }
+              },
+              "required": [
+                "totalCap",
+                "initialCap",
+                "netChangeAbsolute",
+                "netChangePercent",
+                "profit",
+                "change",
+                "change24hPercent",
+                "change24hAbsolute",
+                "hideAmounts",
+                "totalRealizedProfit",
+                "totalUnrealizedProfit"
+              ]
+            },
+            "portfolios": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "initialType": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    },
+                    "chart": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "transactions": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "x": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "xFromIco": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "quantity": {
+                      "type": "string"
+                    },
+                    "accurateQuantity": {
+                      "type": "integer"
+                    },
+                    "initialCap": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "averageBuyPrice": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "totalCap": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "change": {
+                      "type": "object",
+                      "properties": {
+                        "1H": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1D": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1W": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "3M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "6M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "YTD": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1Y": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "ALL": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "1H",
+                        "1D",
+                        "1W",
+                        "1M",
+                        "3M",
+                        "6M",
+                        "YTD",
+                        "1Y",
+                        "ALL"
+                      ]
+                    },
+                    "realizedProfit": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "unrealizedProfit": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "unrealizedProfitPercent": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "netChange": {
+                      "type": "object",
+                      "properties": {
+                        "1H": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1D": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1W": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "3M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "6M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "YTD": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1Y": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "ALL": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "string"
+                            },
+                            "BTC": {
+                              "type": "string"
+                            },
+                            "ETH": {
+                              "type": "string"
+                            },
+                            "BNB": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "1H",
+                        "1D",
+                        "1W",
+                        "1M",
+                        "3M",
+                        "6M",
+                        "YTD",
+                        "1Y",
+                        "ALL"
+                      ]
+                    },
+                    "netChangePercent": {
+                      "type": "object",
+                      "properties": {
+                        "1H": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1D": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1W": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "3M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "6M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "YTD": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1Y": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "ALL": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "1H",
+                        "1D",
+                        "1W",
+                        "1M",
+                        "3M",
+                        "6M",
+                        "YTD",
+                        "1Y",
+                        "ALL"
+                      ]
+                    },
+                    "totalChange": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "share": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "sortOrder": {
+                      "type": "integer"
+                    },
+                    "comment": {
+                      "type": "string"
+                    },
+                    "isTrading": {
+                      "type": "boolean"
+                    },
+                    "icoPrice": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "marketCap": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "volume": {
+                      "type": "object",
+                      "properties": {
+                        "1H": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1D": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1W": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "3M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "6M": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "YTD": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "1Y": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        },
+                        "ALL": {
+                          "type": "object",
+                          "properties": {
+                            "USD": {
+                              "type": "integer"
+                            },
+                            "BTC": {
+                              "type": "integer"
+                            },
+                            "ETH": {
+                              "type": "integer"
+                            },
+                            "BNB": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "USD",
+                            "BTC",
+                            "ETH",
+                            "BNB"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "1H",
+                        "1D",
+                        "1W",
+                        "1M",
+                        "3M",
+                        "6M",
+                        "YTD",
+                        "1Y",
+                        "ALL"
+                      ]
+                    },
+                    "percentTotalChange": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "atl": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "ath": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "string"
+                        },
+                        "BTC": {
+                          "type": "string"
+                        },
+                        "ETH": {
+                          "type": "string"
+                        },
+                        "BNB": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    },
+                    "atlDate": {
+                      "type": "object",
+                      "properties": {
+                        "USD": {
+                          "type": "integer"
+                        },
+                        "BTC": {
+                          "type": "integer"
+                        },
+                        "ETH": {
+                          "type": "integer"
+                        },
+                        "BNB": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "USD",
+                        "BTC",
+                        "ETH",
+                        "BNB"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "slug",
+                    "initialType",
+                    "symbol",
+                    "image",
+                    "chart",
+                    "price",
+                    "transactions",
+                    "x",
+                    "xFromIco",
+                    "quantity",
+                    "accurateQuantity",
+                    "initialCap",
+                    "averageBuyPrice",
+                    "totalCap",
+                    "change",
+                    "realizedProfit",
+                    "unrealizedProfit",
+                    "unrealizedProfitPercent",
+                    "netChange",
+                    "netChangePercent",
+                    "totalChange",
+                    "share",
+                    "sortOrder",
+                    "comment",
+                    "isTrading",
+                    "icoPrice",
+                    "marketCap",
+                    "volume",
+                    "percentTotalChange",
+                    "atl",
+                    "ath",
+                    "atlDate"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "username",
+            "profileImage",
+            "name",
+            "description",
+            "sortOrder",
+            "shareType",
+            "portfolioSharingType",
+            "isSharingPublic",
+            "options",
+            "portfolioTotal",
+            "portfolios"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "username",
+    "btcPriceUsd",
+    "btcChange24h",
+    "ethPriceUsd",
+    "ethChange24h",
+    "btcDominance",
+    "globalInitialType",
+    "portfolioGroups"
+  ]
+}

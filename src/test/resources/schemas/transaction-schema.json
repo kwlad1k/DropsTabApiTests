@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "portfolioId": {
+      "type": "integer"
+    },
+    "currencyId": {
+      "type": "integer"
+    },
+    "transactionType": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "quoteCurrency": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "price": {
+          "type": "object",
+          "properties": {
+            "USD": {
+              "type": "string"
+            },
+            "BTC": {
+              "type": "string"
+            },
+            "ETH": {
+              "type": "string"
+            },
+            "BNB": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "USD",
+            "BTC",
+            "ETH",
+            "BNB"
+          ]
+        },
+        "image": {
+          "type": "string"
+        },
+        "icoPrice": {
+          "type": "object",
+          "properties": {
+            "USD": {
+              "type": "string"
+            },
+            "BTC": {
+              "type": "string"
+            },
+            "ETH": {
+              "type": "string"
+            },
+            "BNB": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "USD",
+            "BTC",
+            "ETH",
+            "BNB"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "symbol",
+        "price",
+        "image",
+        "icoPrice"
+      ]
+    },
+    "priceUsd": {
+      "type": "number"
+    },
+    "priceInQuote": {
+      "type": "number"
+    },
+    "createdAt": {
+      "type": "integer"
+    },
+    "txDate": {
+      "type": "integer"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "fee": {
+      "type": "number"
+    },
+    "feeQuantity": {
+      "type": "number"
+    },
+    "feeType": {
+      "type": "string"
+    },
+    "related": {
+      "type": "boolean"
+    },
+    "relationChangeable": {
+      "type": "boolean"
+    },
+    "partialMovement": {
+      "type": "boolean"
+    },
+    "profitLossAmount": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "id",
+    "portfolioId",
+    "currencyId",
+    "transactionType",
+    "quantity",
+    "quoteCurrency",
+    "priceUsd",
+    "priceInQuote",
+    "createdAt",
+    "txDate",
+    "comment",
+    "fee",
+    "feeQuantity",
+    "feeType",
+    "related",
+    "relationChangeable",
+    "partialMovement",
+    "profitLossAmount"
+  ]
+}

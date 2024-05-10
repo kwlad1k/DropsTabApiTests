@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "data": {
+      "type": "null"
+    },
+    "code": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "success",
+    "data",
+    "code",
+    "message"
+  ]
+}
