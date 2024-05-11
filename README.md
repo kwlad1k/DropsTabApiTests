@@ -96,6 +96,10 @@
 - [x] Добавление транзакции в портфолио
 
 ## :arrow_forward: Запуск автотестов
+> [!NOTE]
+> Для локального запуска тестов убедитесь, что у вас установлены Java, Gradle, IntelliJ IDEA
+> 
+> Подробную инструкцию по установке можно найти по [ссылке](https://github.com/qa-guru/getting-started-java/wiki)
 
 ### Локальный запуск тестов из терминала (с параметрами по умолчанию)
 
@@ -105,13 +109,11 @@ gradle clean test
 
 ### Запуск тестов из Jenkins (с указанием параметров)
 ```
-clean test -Ddriver=remote
--Dbrowser.name=${BROWSER}
--Dbrowser.version=${BROWSER_VERSION} 
--Dbrowser.size=${BROWSER_SIZE}
--Dremote.url=${REMOTE_URL}
--Duser.name=${SECRET_NAME}
--Duser.password=${SECRET_PASSWORD}
+clean test
+-Duser.email=${USER_EMAIL}
+-Duser.name.dt=${USER_NAME}
+-Duser.password=${USER_PASSWORD}
+-Duser.token=${USER_TOKEN}
 ```
 
 <p align="center">
