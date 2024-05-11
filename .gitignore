@@ -4,6 +4,7 @@ build/
 !**/src/test/**
 /bin
 /allure-results
+.DS_Store
 
 ### IntelliJ IDEA ###
 .idea
