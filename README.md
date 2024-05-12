@@ -55,6 +55,7 @@
 * Отправленный запрос каждого теста в форме `Url`, `Body`, `Headers`, `Curl`;
 * Полученный ответ для теста в форме `Status code`, `Body`, `Headers`;
 
+
 ## :scroll: Реализованные проверки:
 ### Авторизация
 - [x] Проверка наличия заголовка на главой странице
@@ -125,6 +126,20 @@ clean ${TASK}
 * <code>USER_EMAIL</code> – Email пользователя для авторизации в учетной записи.
 * <code>USER_PASSWORD</code> – Пароль для авторизации учетной записи в системе DropsTab.
 * <code>USER_TOKEN</code> – Токен учетной записи авторизованного пользователя для API тестов.
+
+### Допустимые комбинации
+
+```mermaid 
+flowchart LR
+    A(gradle) --> B(clean)
+    B --> C{Выбрать тег}
+    C --> D[test]
+    C --> E[positive_test]
+    C --> F[negative_test]
+    C --> G[auth_test]
+    C --> H[portfolio_test]
+    C --> I[transaction_test]
+```
 
 ### Параметры Task 
 * <code>test</code> - запуск всех тестов;
