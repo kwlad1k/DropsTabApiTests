@@ -32,12 +32,12 @@
 <a href="https://www.atlassian.com/ru/software/jira/"><img width="5%" title="Jira" src="media/logos/Jira.svg"></a>
 </p>
 
-- Тесты в проекте написаны на языке : [Java](https://www.java.com/ru/)
-- C применением фреймворка для модульного тестирования : [Junit5](https://github.com/junit-team/junit5)
-- Система автоматической сборки : [Gradle](https://github.com/gradle)
+- Тесты в проекте написаны на языке [Java](https://www.java.com/ru/)
+- C применением фреймворка для модульного тестирования [Junit5](https://github.com/junit-team/junit5)
+- Система автоматической сборки [Gradle](https://github.com/gradle)
 - Реализация UI тестов с помощью [Selenide](https://selenide.org/), обеспечивающего простой и мощный синтаксис для управления браузером и взаимодействия с веб-элементами
-- Удаленный запуск с выбором параметров для тестов реализован при помощи :  [Jenkins](https://www.jenkins.io/)
-- Отчеты о пройденных тестах формируются при помощи : [Allure](https://github.com/allure-framework)
+- Удаленный запуск с выбором параметров для тестов реализован при помощи [Jenkins](https://www.jenkins.io/)
+- Отчеты о пройденных тестах формируются при помощи [Allure](https://github.com/allure-framework)
 - Так же отчеты о тестировании отправляются в мессенджер при помощи [Telegram](https://t.me/publicApiDropsTests) бота
 - Реализована интеграция  с [Allure TestOps](https://qameta.io/)
 - Реализована интеграция с [Jira Software](https://www.atlassian.com/software/jira)
