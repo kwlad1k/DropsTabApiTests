@@ -152,7 +152,7 @@ clean ${TASK}
 <img title="Dashboard Allure TestOps" src="media/screenshots/TestOpsDashboard.png">
 </p>
 
-### Результат выполнения сборки #13
+### :checkered_flag: [Результат выполнения сборки #13](https://allure.autotests.cloud/launch/38889/tree?treeId=0)
 
 <p align="center">
 <img title="Сборка#10 в Allure TestOps" src="media/screenshots/TestOpsResult-9.png">
@@ -199,11 +199,4 @@ clean ${TASK}
 
 <p align="center">
 <img width="70%" title="Уведомление в Telegram" src="media/screenshots/TelegramAlerts.png">
-</p>
-
-## <img width="4%" style="vertical-align:middle" title="Selenoid" src="media/logos/Selenoid.svg"> Видео пример запуска автотестов в Selenoid
-
-В отчетах Allure для каждого теста прикреплён не только скриншот, но и видео прохождения теста, записанное Selenoid.
-<p align="center">
-  <img title="Видео записанное Selenoid" src="media/video/video.gif">
 </p>
