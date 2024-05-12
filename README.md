@@ -185,17 +185,23 @@ clean ${TASK}
 <img title="Графики прохождения сборки в отчёте Allure" src="media/screenshots/AllureCharts-13.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logos/Jira.svg"> [Интеграция](https://jira.autotests.cloud/browse/HOMEWORK-1149) с Jira
+## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logos/Jira.svg"> [Интеграция](https://jira.autotests.cloud/browse/HOMEWORK-1225) с Jira
 
-Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в задаче отображаются прикрепленные тесты и результат прогона сборки #10.
+Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в задаче отображаются прикрепленные тесты и результат прогона сборки #7.
 
+#### Тикет в Jira
 <p align="center">
-<img title="Тикет в Jira" src="media/screenshots/Jira.png">
+<img title="Тикет в Jira" src="media/screenshots/Jira-1.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Telegram" src="media/logos/Telegram.svg"> Уведомления в [Telegram канал](https://t.me/publicDromAlerts) с использованием бота 
+#### Интегрнация с Allure TestOps
+<p align="center">
+<img title="Тикет в Jira" src="media/screenshots/Jira-2.png">
+</p>
 
-После завершения сборки и прохождения всех тестовых сценариев в [Telegram канал](https://t.me/publicDromAlerts) приходит оповещение с отчетом о результатах прохождения автотестов.
+## <img width="4%" style="vertical-align:middle" title="Telegram" src="media/logos/Telegram.svg"> Уведомления в [Telegram канал](https://t.me/publicApiDropsTests) с использованием бота 
+
+После завершения сборки и прохождения всех тестовых сценариев в [Telegram канал](https://t.me/publicApiDropsTests) приходит оповещение с отчетом о результатах прохождения автотестов.
 
 <p align="center">
 <img width="70%" title="Уведомление в Telegram" src="media/screenshots/TelegramAlerts.png">
