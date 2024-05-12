@@ -152,10 +152,10 @@ clean ${TASK}
 <img title="Dashboard Allure TestOps" src="media/screenshots/TestOpsDashboard.png">
 </p>
 
-### Результат выполнения сборки #10
+### Результат выполнения сборки #9
 
 <p align="center">
-<img title="Сборка#10 в Allure TestOps" src="media/screenshots/TestOpsResult-10.png">
+<img title="Сборка#10 в Allure TestOps" src="media/screenshots/TestOpsResult-9.png">
 </p>
 
 ## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logos/AllureReport.svg"> [Пример](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DromRu/10/allure/) Allure-отчета
