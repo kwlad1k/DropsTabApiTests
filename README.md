@@ -152,7 +152,7 @@ clean ${TASK}
 <img title="Dashboard Allure TestOps" src="media/screenshots/TestOpsDashboard.png">
 </p>
 
-### Результат выполнения сборки #9
+### Результат выполнения сборки #13
 
 <p align="center">
 <img title="Сборка#10 в Allure TestOps" src="media/screenshots/TestOpsResult-9.png">
@@ -165,16 +165,24 @@ clean ${TASK}
 <img title="Общий вид отчёта Allure" src="media/screenshots/AllureOverview.png">
 </p>
 
-### Результат выполнения автотестов
+### [Результат выполнения автотестов](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DropsTabApiTest/13/allure/#suites/7287a1cb19ff6eb0003fcd1801c4d1c7)
+
+#### Авторизация/регистрация
 
 <p align="center">
-<img title="Список тест-кейсов в отчёте Allure" src="media/screenshots/AllureSuites.png">
+<img title="Список тест-кейсов в отчёте Allure" src="media/screenshots/AllureSuitesAuth.png">
 </p>
 
-### Графики
+#### Раздел портфолио
 
 <p align="center">
-<img title="Графики прохождения сборки в отчёте Allure" src="media/screenshots/AllureCharts.png">
+<img title="Список тест-кейсов в отчёте Allure" src="media/screenshots/AllureSuitesPortfolio.png">
+</p>
+
+### :bar_chart: [Графики](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DropsTabApiTest/13/allure/#graph)
+
+<p align="center">
+<img title="Графики прохождения сборки в отчёте Allure" src="media/screenshots/AllureCharts-13.png">
 </p>
 
 ## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logos/Jira.svg"> [Интеграция](https://jira.autotests.cloud/browse/HOMEWORK-1149) с Jira
