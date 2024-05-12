@@ -59,3 +59,33 @@ tasks.withType(Test) {
         }
     }
 }
+
+task positive_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Positive")
+    }
+}
+
+task negative_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Negative")
+    }
+}
+
+task auth_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Auth")
+    }
+}
+
+task portfolio_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Portfolio")
+    }
+}
+
+task transaction_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Transaction")
+    }
+}

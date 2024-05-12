@@ -110,24 +110,23 @@ gradle clean test
 ### Запуск тестов из Jenkins (с указанием параметров)
 ```
 clean test
--Duser.email=${USER_EMAIL}
 -Duser.name.dt=${USER_NAME}
+-Duser.email=${USER_EMAIL}
 -Duser.password=${USER_PASSWORD}
 -Duser.token=${USER_TOKEN}
 ```
 
 <p align="center">
-<img title="Запуск с параметрами" src="media/screenshots/JenkinsStart-new.png">
+<img title="Запуск с параметрами" src="media/screenshots/ConfigStart.png">
 </p>
 
 ### Параметры сборки
 
-* <code>BROWSER</code> – браузер, в котором будут выполняться тесты. По умолчанию – <code>chrome</code>.
-* <code>BROWSER_VERSION</code> – версия браузера, в которой будут выполняться тесты. По умолчанию – <code>100.0</code>.
-* <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты. По умолчанию – <code>1920x1080</code>.
-* <code>REMOTE_URL</code> – адрес удаленного сервера, на котором будут запускаться тесты. По умолчанию – <code>https://user1:1234@selenoid.autotests.cloud/wd/hub</code>
-* <code>SECRET_NAME</code> – Логин для входа в учетную запись Drom
-* <code>SECRET_PASSWORD</code> – Пароль для входа в учетную запись Drom
+* <code>USER_NAME</code> – Имя пользователя учетной записи в DropsTab. По умолчанию – <code>kwlad1ck</code>.
+* <code>USER_EMAIL</code> – Email пользователя для авторизации в учетной записи.
+* <code>USER_PASSWORD</code> – Пароль для авторизации учетной записи в системе DropsTab.
+* <code>USER_TOKEN</code> – Токен учетной записи авторизованного пользователя для API тестов.
+
 ## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logos/Jenkins.svg"> [Сборка](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DromRu/) в Jenkins
 
 Для запуска сборки необходимо перейти в раздел <code>Build with parameters</code> и нажать кнопку <code>Build</code>.

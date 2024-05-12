@@ -6,6 +6,7 @@ import io.qameta.allure.Owner;
 import models.auth.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 
@@ -25,7 +26,10 @@ public class AuthUserTests extends TestBaseAPI {
     TestDataAPI testData = new TestDataAPI();
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Успешная авторизация пользователя")
     void successfulLoginTest() {
@@ -54,7 +58,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Проверка негативной авторизации пользователя")
     void negativeLLoginTest() {
@@ -82,7 +89,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Отправка запроса на регистрацию пользователя")
     void successfulRegistrationTest() {
@@ -108,7 +118,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Отправка запроса на регистраци с невалидным Email")
     void negativeRegistrationWithoutEmailTest() {
@@ -138,7 +151,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Отправка запроса на регистраци без пароля")
     void negativeRegistrationWithoutPasswordTest() {
@@ -168,7 +184,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Отправка запроса регистрации c длинным именем пользователя")
     void negativeRegistrationWithInCorrectUserNameTest() {
@@ -198,7 +217,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Запрос на регистрацию с уже существующим Email в системе")
     void negativeRegistrationWithEmailTest() {
@@ -228,7 +250,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Запрос на регистрацию с уже существующим Username в системе")
     void negativeRegistrationWithUserNameTest() {
@@ -258,7 +283,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Отправка письма подтвержденния существующего аккаунта")
     void successfulResendEmailConfirmTest() {
@@ -282,7 +310,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Отправка письма подтвержденния на несуществующий Email")
     void negativeResendEmailConfirmTest() {
@@ -311,7 +342,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Выслать ссылку восстановления пароля на почту юзеру")
     void resetPasswordTest() {
@@ -335,7 +369,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Проверка Username на сущестование")
     void successfulCheckUserNameExistsTest() {
@@ -359,7 +396,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Проверка Username что он не сущестует")
     void negativeCheckUserNameExistsTest() {
@@ -383,7 +423,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Запрос возвращения текущего пользователя")
     void checkUserCurrentTest() {
@@ -405,7 +448,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Запрос возвращения неавторизованной учетки")
     void negativeCheckUserCurrentTest() {
@@ -429,7 +475,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Positive")
+    @Tags({
+            @Tag("Positive"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Успешная смена пароля аккаунта")
     void successfulChangePasswordTest() {
@@ -457,7 +506,10 @@ public class AuthUserTests extends TestBaseAPI {
     }
 
     @Test
-    @Tag("Negative")
+    @Tags({
+            @Tag("Negative"),
+            @Tag("Auth")
+    })
     @Owner("Kwlad1ck")
     @DisplayName("Не успешная смена пароля акканута")
     void negativeChangePasswordTest() {
