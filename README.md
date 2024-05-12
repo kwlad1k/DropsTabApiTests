@@ -165,7 +165,7 @@ clean ${TASK}
 <img title="Общий вид отчёта Allure" src="media/screenshots/AllureOverview.png">
 </p>
 
-### [Результат выполнения автотестов](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DropsTabApiTest/13/allure/#suites/7287a1cb19ff6eb0003fcd1801c4d1c7)
+### :white_check_mark: [Результат выполнения автотестов](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DropsTabApiTest/13/allure/#suites/7287a1cb19ff6eb0003fcd1801c4d1c7)
 
 #### Авторизация/регистрация
 
