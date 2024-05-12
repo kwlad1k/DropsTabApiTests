@@ -59,16 +59,16 @@
           "type": "object",
           "properties": {
             "USD": {
-              "type": "string"
+              "type": ["string", "null"]
             },
             "BTC": {
-              "type": "string"
+              "type": ["string", "null"]
             },
             "ETH": {
-              "type": "string"
+              "type": ["string", "null"]
             },
             "BNB": {
-              "type": "string"
+              "type": ["string", "null"]
             }
           },
           "required": [
