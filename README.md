@@ -109,7 +109,7 @@ gradle clean test
 
 ### Запуск тестов из Jenkins (с указанием параметров)
 ```
-clean test
+clean ${TASK}
 -Duser.name.dt=${USER_NAME}
 -Duser.email=${USER_EMAIL}
 -Duser.password=${USER_PASSWORD}
@@ -121,13 +121,21 @@ clean test
 </p>
 
 ### Параметры сборки
-
+* <code>TASK</code> - Определяющий тег для запуска необходимых тестов.
 * <code>USER_NAME</code> – Имя пользователя учетной записи в DropsTab. По умолчанию – <code>kwlad1ck</code>.
 * <code>USER_EMAIL</code> – Email пользователя для авторизации в учетной записи.
 * <code>USER_PASSWORD</code> – Пароль для авторизации учетной записи в системе DropsTab.
 * <code>USER_TOKEN</code> – Токен учетной записи авторизованного пользователя для API тестов.
 
-## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logos/Jenkins.svg"> [Сборка](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DromRu/) в Jenkins
+### Параметры Task 
+* <code>test</code> - запуск всех тестов;
+* <code>positive_test</code> - запуск коллекции позитивных тестов;
+* <code>negative_test</code> - запуск коллекции негативных тестов;
+* <code>auth_test</code> - запуск коллекции тестов авторизации/регистрации пользователя;
+* <code>portfolio_test</code> - запуск коллекции тестов раздела портфолио;
+* <code>transaction_test</code> - запуск коллекции тестов транзакций;
+
+## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logos/Jenkins.svg"> [Сборка](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DropsTabApiTest/) в Jenkins
 
 Для запуска сборки необходимо перейти в раздел <code>Build with parameters</code> и нажать кнопку <code>Build</code>.
 <p align="center">
