@@ -1,4 +1,5 @@
 # Проект по автоматизации тестовых сценариев API для сайта [DropsTab.com](https://dropstab.com/)
+
 <p align="center">
 <a href="https://dropstab.com/"><img title="Логотип компании DropsTab" src="media/logos/dropsTabLogo.jpeg"></a>
 </p>
@@ -37,24 +38,27 @@
 - Удаленный запуск с выбором параметров для тестов реализован при помощи [Jenkins](https://www.jenkins.io/)
 - Отчеты о пройденных тестах формируются при помощи [Allure](https://github.com/allure-framework)
 - Так же отчеты о тестировании отправляются в мессенджер при помощи [Telegram](https://t.me/publicApiDropsTests) бота
-- Реализована интеграция  с [Allure TestOps](https://qameta.io/)
+- Реализована интеграция с [Allure TestOps](https://qameta.io/)
 - Реализована интеграция с [Jira Software](https://www.atlassian.com/software/jira)
 - Реализация API тестов при помощи [RestAssured](https://rest-assured.io/)
 
 ## :star: Особенности-проекта
+
 - Использование техноголии `Owner` для придания тестам гибкости и легкости конфигурации
 - Использование библиотеки `JavaFaker` для генерации рандомных и выборки тестовых данных
 - Использование подхода `Lombok` для моделей в API тестах
 
-По итогу прохождения тестов генерируется `Allure-отчет`, который содержит в себе 
+По итогу прохождения тестов генерируется `Allure-отчет`, который содержит в себе
+
 * Результат выполненных тестов;
 * Видимость шагов при выполение тестов;
 * Отправленный запрос каждого теста в форме `Url`, `Body`, `Headers`, `Curl`;
 * Полученный ответ для теста в форме `Status code`, `Body`, `Headers`;
 
-
 ## :scroll: Реализованные проверки:
+
 ### Авторизация
+
 - [x] Проверка наличия заголовка на главой странице
 - [x] Успешная авторизация пользователя
 - [x] Проверка негативной авторизации пользователя
@@ -74,6 +78,7 @@
 - [x] Не успешная смена пароля акканута
 
 ### Раздел потфолио
+
 - [x] Получение списка портфолио аккаунта
 - [x] Создание нового портфолио для аккаунта
 - [x] Удаление рандомного портфолио аккаунта
@@ -93,9 +98,10 @@
 - [x] Добавление транзакции в портфолио
 
 ## :arrow_forward: Запуск автотестов
+
 > [!NOTE]
 > Для локального запуска тестов убедитесь, что у вас установлены Java, Gradle, IntelliJ IDEA
-> 
+>
 > Подробную инструкцию по установке можно найти по [ссылке](https://github.com/qa-guru/getting-started-java/wiki)
 
 ### Локальный запуск тестов из терминала (с параметрами по умолчанию)
@@ -105,6 +111,7 @@ gradle clean test
 ```
 
 ### Запуск тестов из Jenkins (с указанием параметров)
+
 ```
 clean ${TASK}
 -Duser.name.dt=${USER_NAME}
@@ -118,6 +125,7 @@ clean ${TASK}
 </p>
 
 ### Параметры сборки
+
 * <code>TASK</code> - Определяющий тег для запуска необходимых тестов.
 * <code>USER_NAME</code> – Имя пользователя учетной записи в DropsTab. По умолчанию – <code>kwlad1ck</code>.
 * <code>USER_EMAIL</code> – Email пользователя для авторизации в учетной записи.
@@ -138,7 +146,8 @@ flowchart LR
     C --> I[transaction_test]
 ```
 
-### Параметры Task 
+### Параметры Task
+
 * <code>test</code> - запуск всех тестов;
 * <code>positive_test</code> - запуск коллекции позитивных тестов;
 * <code>negative_test</code> - запуск коллекции негативных тестов;
@@ -153,11 +162,15 @@ flowchart LR
 <img title="Сборка в Jenkins" src="media/screenshots/Jenkins.png">
 </p>
 
-После выполнения сборки, в блоке <code>Build History</code> напротив номера сборки появятся значки <code>Allure TestOps</code> и <code>Allure Report</code>, при клике на которые откроется страница с сформированным html-отчетом и тестовыми артефактами.
+После выполнения сборки, в блоке <code>Build History</code> напротив номера сборки появятся значки <code>Allure
+TestOps</code> и <code>Allure Report</code>, при клике на которые откроется страница с сформированным html-отчетом и
+тестовыми артефактами.
 
 ## <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="media/logos/AllureTestOps.svg"> [Интеграция](https://allure.autotests.cloud/project/4230/dashboards) с Allure TestOps
 
-На *Dashboard* в <code>Allure TestOps</code> видна статистика количества тестов: сколько из них активных/находяться в ревью/черновик/устаревшие, а так же количество ручных и автоматизированных тестов. Результаты выполнения тестов приходят в автоматическом режиме по интеграции при каждом запуске сборки проекта.
+На *Dashboard* в <code>Allure TestOps</code> видна статистика количества тестов: сколько из них активных/находяться в
+ревью/черновик/устаревшие, а так же количество ручных и автоматизированных тестов. Результаты выполнения тестов приходят
+в автоматическом режиме по интеграции при каждом запуске сборки проекта.
 
 <p align="center">
 <img title="Dashboard Allure TestOps" src="media/screenshots/TestOpsDashboard.png">
@@ -170,6 +183,7 @@ flowchart LR
 </p>
 
 ## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logos/AllureReport.svg"> [Пример](https://jenkins.autotests.cloud/job/024_Kwlad1ck_DropsTabApiTest/13/allure/) Allure-отчета
+
 ### Основаня страница отчета
 
 <p align="center">
@@ -198,21 +212,25 @@ flowchart LR
 
 ## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logos/Jira.svg"> [Интеграция](https://jira.autotests.cloud/browse/HOMEWORK-1225) с Jira
 
-Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в задаче отображаются прикрепленные тесты и результат прогона сборки #7.
+Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в задаче отображаются прикрепленные тесты и
+результат прогона сборки #7.
 
 #### Тикет в Jira
+
 <p align="center">
 <img title="Тикет в Jira" src="media/screenshots/Jira-1.png">
 </p>
 
 #### Интегрнация с Allure TestOps
+
 <p align="center">
 <img title="Тикет в Jira" src="media/screenshots/Jira-2.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Telegram" src="media/logos/Telegram.svg"> Уведомления в [Telegram канал](https://t.me/publicApiDropsTests) с использованием бота 
+## <img width="4%" style="vertical-align:middle" title="Telegram" src="media/logos/Telegram.svg"> Уведомления в [Telegram канал](https://t.me/publicApiDropsTests) с использованием бота
 
-После завершения сборки и прохождения всех тестовых сценариев в [Telegram канал](https://t.me/publicApiDropsTests) приходит оповещение с отчетом о результатах прохождения автотестов.
+После завершения сборки и прохождения всех тестовых сценариев в [Telegram канал](https://t.me/publicApiDropsTests)
+приходит оповещение с отчетом о результатах прохождения автотестов.
 
 <p align="center">
 <img width="70%" title="Уведомление в Telegram" src="media/screenshots/TelegramAlerts.png">
