@@ -89,3 +89,9 @@ task transaction_test(type: Test) {
         includeTags("Transaction")
     }
 }
+
+task widgets_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Widgets")
+    }
+}

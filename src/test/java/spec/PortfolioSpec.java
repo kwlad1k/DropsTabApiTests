@@ -11,11 +11,11 @@ public class PortfolioSpec {
     static TestDataAPI testData = new TestDataAPI();
     public static ResponseSpecification notesResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
-            .expectBody(matchesJsonSchemaInClasspath("schemas/notes-schema.json"))
+            .expectBody(matchesJsonSchemaInClasspath("schemas/portfolio-schema/notes-schema.json"))
             .build();
 
     public static ResponseSpecification txnResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
-            .expectBody(matchesJsonSchemaInClasspath("schemas/transaction-schema.json"))
+            .expectBody(matchesJsonSchemaInClasspath("schemas/portfolio-schema/transaction-schema.json"))
             .build();
 }

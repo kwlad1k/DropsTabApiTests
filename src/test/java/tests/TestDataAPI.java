@@ -74,7 +74,9 @@ public class TestDataAPI {
     public Double randomFee = faker.number().randomDouble(2, 0, 1),
             randomQuantity = faker.number().randomDouble(2, 1, 500) / 100.0;
 
-    public Long randomDataAtTime = getRandomTimestamp("2020-01-01");
+    public Long randomDataAtTime = getRandomTimestamp("2020-01-01"),
+            randomDataBtcDom = getRandomTimestamp("2013-01-01"),
+            currentTime = System.currentTimeMillis();
 
     public Boolean randomBoolean = random.nextBoolean(),
             rdmBlnInclTotal = random.nextBoolean(),
