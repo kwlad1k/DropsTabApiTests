@@ -12,6 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static spec.DefaultSpec.*;
 import static spec.WidgetsSpec.*;
 
+@DisplayName("Виджеты")
 public class WidgetsTests extends TestBaseAPI {
 
     TestDataAPI testData = new TestDataAPI();
