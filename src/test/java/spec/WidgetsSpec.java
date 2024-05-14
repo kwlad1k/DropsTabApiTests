@@ -17,4 +17,9 @@ public class WidgetsSpec {
             .log(STATUS)
             .expectBody(matchesJsonSchemaInClasspath("schemas/widgets-schema/fear-greed-index-response-schema.json"))
             .build();
+
+    public static ResponseSpecification spxAndGoldResponseSpec = new ResponseSpecBuilder()
+            .log(STATUS)
+            .expectBody(matchesJsonSchemaInClasspath("schemas/widgets-schema/spx-and-gold-schema.json"))
+            .build();
 }

@@ -1,7 +1,7 @@
-package tests;
+package tests.BFF;
 
 import io.qameta.allure.Owner;
-import models.widgets.FearGreedIndexResponseModel;
+import models.widgets.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -13,8 +13,6 @@ import static spec.DefaultSpec.*;
 import static spec.WidgetsSpec.*;
 
 public class WidgetsBFFTests extends TestBaseBFF {
-
-    TestDataAPI testData = new TestDataAPI();
 
     @Test
     @Tag("Widgets")
@@ -45,6 +43,45 @@ public class WidgetsBFFTests extends TestBaseBFF {
                     .allMatch(value -> value != null && value != 0);
             assertThat(fearGreedIndexResponseModel.getData().getFearGreedIndexHistory().getValueClassification().toArray(new String[0]))
                     .isNotEmpty();
+        });
+    }
+
+    @Test
+    @Tag("Widgets")
+    @Owner("Kwlad1ck")
+    @DisplayName("Полученние данных виджета SPX и Gold")
+    void successfulResponseSPXAndGoldRequestTest() {
+        SpxAndGoldResponseModel spxAndGoldResponseModel = step("Полученние данных Fear/Greed Index", () ->
+                given(defLogSpec)
+                        .queryParam("fields", "stockRealtimeSPX,stockRealtimeGOLD")
+
+                        .when()
+                        .get("/market-total-and-widgets-summary")
+
+                        .then()
+                        .spec(spxAndGoldResponseSpec)
+                        .statusCode(200)
+                        .extract().as(SpxAndGoldResponseModel.class));
+
+        step("Check response", () -> {
+            assertThat(spxAndGoldResponseModel.getOk()).isTrue();
+            assertThat(spxAndGoldResponseModel.getMessage()).isEqualTo("OK");
+            assertThat(spxAndGoldResponseModel.getData().getStockRealtimeGOLD().getChange())
+                    .isNotNull()
+                    .isNotEqualTo(0);
+            assertThat(spxAndGoldResponseModel.getData().getStockRealtimeGOLD()
+                    .getStockMarket().getCurrencyType()).isEqualTo("GOLD");
+            assertThat(spxAndGoldResponseModel.getData().getStockRealtimeGOLD().getStockMarket().getPrice())
+                    .isNotNull()
+                    .isNotEqualTo(0);
+            assertThat(spxAndGoldResponseModel.getData().getStockRealtimeSPX().getChange())
+                    .isNotNull()
+                    .isNotEqualTo(0);
+            assertThat(spxAndGoldResponseModel.getData().getStockRealtimeSPX()
+                    .getStockMarket().getCurrencyType()).isEqualTo("SPX");
+            assertThat(spxAndGoldResponseModel.getData().getStockRealtimeSPX().getStockMarket().getPrice())
+                    .isNotNull()
+                    .isNotEqualTo(0);
         });
     }
 }

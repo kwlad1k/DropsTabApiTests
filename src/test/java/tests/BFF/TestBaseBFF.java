@@ -1,4 +1,4 @@
-package tests;
+package tests.BFF;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;

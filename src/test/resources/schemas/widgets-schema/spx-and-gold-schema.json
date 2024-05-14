@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "stockRealtimeSPX": {
+          "type": "object",
+          "properties": {
+            "marketStatus": {
+              "type": "boolean"
+            },
+            "stockMarket": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": "number"
+                },
+                "currencyType": {
+                  "type": "string"
+                },
+                "updateTime": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "price",
+                "currencyType",
+                "updateTime"
+              ]
+            },
+            "change": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "marketStatus",
+            "stockMarket",
+            "change"
+          ]
+        },
+        "stockRealtimeGOLD": {
+          "type": "object",
+          "properties": {
+            "marketStatus": {
+              "type": "boolean"
+            },
+            "stockMarket": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": "number"
+                },
+                "currencyType": {
+                  "type": "string"
+                },
+                "updateTime": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "price",
+                "currencyType",
+                "updateTime"
+              ]
+            },
+            "change": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "marketStatus",
+            "stockMarket",
+            "change"
+          ]
+        }
+      },
+      "required": [
+        "stockRealtimeSPX",
+        "stockRealtimeGOLD"
+      ]
+    }
+  },
+  "required": [
+    "ok",
+    "message",
+    "data"
+  ]
+}
