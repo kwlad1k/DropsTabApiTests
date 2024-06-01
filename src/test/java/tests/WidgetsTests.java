@@ -47,4 +47,34 @@ public class WidgetsTests extends TestBaseAPI {
                     .allMatch(time -> time != null && time != 0L);
         });
     }
+
+    @Test
+    @Tag("Widgets")
+    @Owner("Kwlad1ck")
+    @DisplayName("Получение данных SPX в реальном времени")
+    void realtimeSPXDataRetrievalTest() {
+        BtcDominationResponseModel btcDominationResponseModel = step("Получение данных BTC доминации", () ->
+                given(defLogSpec)
+                        .queryParam("symbol", "SPX")
+
+                        .when()
+                        .get("/api/stock/realtime")
+
+                        .then()
+                        .spec(btcDominationResponseSpec)
+                        .statusCode(200)
+                        .extract().as(BtcDominationResponseModel.class));
+
+        step("Check response", () -> {
+            assertThat(btcDominationResponseModel.getChange())
+                    .isNotNull()
+                    .isNotEqualTo(0);
+            assertThat(btcDominationResponseModel.getDominationPercent().toArray(new Double[0]))
+                    .isNotEmpty()
+                    .allMatch(dominationPercent -> dominationPercent != null && dominationPercent != 0);
+            assertThat(btcDominationResponseModel.getTime().toArray(new Long[0]))
+                    .isNotEmpty()
+                    .allMatch(time -> time != null && time != 0L);
+        });
+    }
 }
