@@ -201,6 +201,18 @@ public class PortfolioTests extends TestBaseAPI {
     @Owner("Kwlad1ck")
     @DisplayName("Измнения ссылки шеринга портфолио")
     void successfulChangeSharingLinkTest() {
+        // Setup: ensure sharing is enabled. /token/custom only works when shareType != NONE.
+        SharePortfolioBodyModel enableSharing = new SharePortfolioBodyModel();
+        enableSharing.setType("ALL_HIDE_AMOUNTS");
+        step("Setup: enable sharing on portfolio", () ->
+                given(defLogWithAuthSpec)
+                        .body(enableSharing)
+                        .when()
+                        .post("/api/portfolioGroup/" + testData.specialPortfolioId + "/token/type")
+                        .then()
+                        .spec(defRespLogSpec)
+                        .statusCode(200));
+
         SharePortfolioBodyModel shareTypeData = new SharePortfolioBodyModel();
         shareTypeData.setSharingSlug(testData.randomSharingSlug);
 
@@ -269,6 +281,19 @@ public class PortfolioTests extends TestBaseAPI {
     @Owner("Kwlad1ck")
     @DisplayName("Изменение ссылки шеринга портфолио с запретными словами")
     void unsuccessfulChangeSharingWithBanedWordLinkTest() {
+        // Setup: ensure sharing is enabled. /token/custom validations (incl. forbidden-words)
+        // only run when shareType != NONE.
+        SharePortfolioBodyModel enableSharing = new SharePortfolioBodyModel();
+        enableSharing.setType("ALL_HIDE_AMOUNTS");
+        step("Setup: enable sharing on portfolio", () ->
+                given(defLogWithAuthSpec)
+                        .body(enableSharing)
+                        .when()
+                        .post("/api/portfolioGroup/" + testData.specialPortfolioId + "/token/type")
+                        .then()
+                        .spec(defRespLogSpec)
+                        .statusCode(200));
+
         SharePortfolioBodyModel shareTypeData = new SharePortfolioBodyModel();
         shareTypeData.setSharingSlug(testData.forbiddenWordsForSharingSlug);
 

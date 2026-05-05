@@ -205,14 +205,15 @@ public class AuthUserTests extends TestBaseAPI {
 
                         .then()
                         .spec(defRespLogSpec)
-                        .statusCode(500)
+                        .statusCode(400)
                         .extract().as(RegisterUserResponseModel.class));
 
         step("Check response", () -> {
             assertThat(registerUserResponseModel.getSuccess()).isFalse();
             assertThat(registerUserResponseModel.getData()).isNull();
-            assertThat(registerUserResponseModel.getCode()).isEqualTo("USERNAME_WRONG_LENGTH");
-            assertThat(registerUserResponseModel.getMessage()).isEqualTo("Username must be from 3 to 32 characters long");
+            // API consolidated length+charset errors under the same code (May 2026 update)
+            assertThat(registerUserResponseModel.getCode()).isEqualTo("USERNAME_CHARACTER_MISMATCH");
+            assertThat(registerUserResponseModel.getMessage()).isEqualTo("Invalid character in username");
         });
     }
 
@@ -483,13 +484,12 @@ public class AuthUserTests extends TestBaseAPI {
     @DisplayName("Успешная смена пароля аккаунта")
     void successfulChangePasswordTest() {
         ChangePasswordBodyModel changePasswordData = new ChangePasswordBodyModel();
-        changePasswordData.setOldPassword("112233");
-        changePasswordData.setNewPassword("112233");
+        changePasswordData.setOldPassword(testData.authUserPassword);
+        changePasswordData.setNewPassword(testData.authUserPassword);
 
         ChangePasswordResponseModel changePasswordResponseModel = step("Make request", () ->
-                given(defLogSpec)
+                given(defLogWithAuthSpec)
                         .body(changePasswordData)
-                        .header("Authorization", "Bearer " + testData.authorizationToken)
 
                         .when()
                         .post("/api/user/changePassword")
@@ -503,6 +503,12 @@ public class AuthUserTests extends TestBaseAPI {
             assertThat(changePasswordResponseModel.getAccessToken()).isNotNull();
             assertThat(changePasswordResponseModel.getExpiresIn()).isNotNull();
         });
+
+        // Server invalidates the previous session token after changePassword.
+        // Push the new accessToken into the SHARED PortfolioSpec.testData (the one
+        // DefaultSpec.dynamicAuthFilter reads) so all subsequent tests
+        // (incl. PortfolioTests) pick up the new Bearer.
+        spec.PortfolioSpec.testData.authorizationToken = changePasswordResponseModel.getAccessToken();
     }
 
     @Test

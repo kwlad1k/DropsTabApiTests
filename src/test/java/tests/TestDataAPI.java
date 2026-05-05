@@ -29,7 +29,7 @@ public class TestDataAPI {
             authorizationToken = authConfig.userToken(),
             randomEmail = faker.internet().emailAddress(),
             randomPassword = faker.internet().password(),
-            randomUserName = faker.name().username(),
+            randomUserName = faker.regexify("[a-z]{6,12}"),
             randomColor = faker.options().option("CYAN", "INDIGO", "PURPLE", "ORANGE", "BLUE", "GREEN"),
             randomAddDescription = now.format(formatData) + " Added " + faker.lorem().paragraph(),
             randomChangeDescription = now.format(formatData) + " Changed " + faker.lorem().paragraph(),
@@ -85,7 +85,9 @@ public class TestDataAPI {
             rdmBlnShowUpEvents = random.nextBoolean(),
             rdmBlnTopPerformance = random.nextBoolean();
 
-    List<Integer> excludePortfolio = Arrays.asList(-1, 646205, 695134);
+    // -1 is "Total Portfolio" pseudo-id; specialPortfolioId is the configured target portfolio
+    // used by other tests (notes, sharing, etc.) — must be excluded from deletion.
+    List<Integer> excludePortfolio = Arrays.asList(-1, 646205, 695134, Integer.parseInt(specialPortfolioId));
 
     public static final Map<String, Integer> currencyIdMap = new HashMap<>();
 

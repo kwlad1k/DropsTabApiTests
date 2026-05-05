@@ -8,7 +8,9 @@ import static io.restassured.filter.log.LogDetail.STATUS;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PortfolioSpec {
-    static TestDataAPI testData = new TestDataAPI();
+    // Shared instance read by DefaultSpec.dynamicAuthFilter — public so tests can mutate
+    // .authorizationToken when the server rotates the session (e.g. successfulChangePasswordTest).
+    public static TestDataAPI testData = new TestDataAPI();
     public static ResponseSpecification notesResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .expectBody(matchesJsonSchemaInClasspath("schemas/notes-schema.json"))

@@ -1,6 +1,7 @@
 package spec;
 
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.Filter;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
@@ -18,9 +19,19 @@ public class DefaultSpec {
             .log().method()
             .contentType(JSON);
 
+    /**
+     * Reads testData.authorizationToken at REQUEST time (not at spec build time)
+     * so tests that rotate the token (e.g. successfulChangePasswordTest) can update
+     * testData.authorizationToken and have subsequent requests pick it up.
+     */
+    private static final Filter dynamicAuthFilter = (req, resp, ctx) -> {
+        req.header("Authorization", "Bearer " + testData.authorizationToken);
+        return ctx.next(req, resp);
+    };
+
     public static RequestSpecification defLogWithAuthSpec = with()
             .filter(withCustomTemplates())
-            .header("Authorization", "Bearer " + testData.authorizationToken)
+            .filter(dynamicAuthFilter)
             .log().uri()
             .log().method()
             .contentType(JSON);

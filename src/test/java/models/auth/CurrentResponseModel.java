@@ -11,7 +11,7 @@ public class CurrentResponseModel {
     Boolean success, enabled;
 
     String data, code, message, email, username, role, profileImage, selectedPresetGuid,
-            shareType;
+            shareType, telegramVerificationCode, telegramDisplayName;
 
     Integer id;
 
@@ -20,7 +20,11 @@ public class CurrentResponseModel {
     @JsonProperty("isBannedForSharePreset")
     Boolean isBannedForSharePreset;
 
+    Boolean telegramLinked;
+
     List<Integer> presetOrderById;
+
+    List<Object> authorities;
 
     Object sharingUsers;
 

@@ -40,7 +40,7 @@ public class PortfolioResponseModel {
     @AllArgsConstructor
     public static class Options {
 
-        String chartTimeframe, portfolioTimeframe, color;
+        String chartTimeframe, portfolioTimeframe, color, avatar;
 
         Boolean showChart, showSmallHoldings, showHoldingsShareChart, showUpcomingEvents,
                 showNotes, topPerformance, includeInTotal;
