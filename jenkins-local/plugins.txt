@@ -1,0 +1,12 @@
+configuration-as-code
+job-dsl
+workflow-aggregator
+pipeline-stage-view
+git
+credentials
+credentials-binding
+plain-credentials
+matrix-project
+allure-jenkins-plugin
+ansicolor
+timestamper

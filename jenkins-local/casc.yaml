@@ -1,0 +1,101 @@
+# Jenkins Configuration as Code (JCasC)
+# https://www.jenkins.io/projects/jcasc/
+#
+# Loaded by Jenkins on every startup. Changing this file and restarting the
+# container reapplies the entire configuration declaratively.
+
+jenkins:
+  systemMessage: "DropsTab API Tests — local Jenkins (Configuration as Code)"
+  numExecutors: 2
+  mode: NORMAL
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "${JENKINS_ADMIN_ID:-admin}"
+          password: "${JENKINS_ADMIN_PASSWORD:-admin}"
+  remotingSecurity:
+    enabled: true
+
+unclassified:
+  location:
+    url: "${JENKINS_URL:-http://localhost:8080/}"
+    adminAddress: "noreply@localhost"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              id: "dropstab-user-name"
+              scope: GLOBAL
+              secret: "${DROPSTAB_USER_NAME}"
+              description: "DropsTab username (e.g. pidiri207)"
+          - string:
+              id: "dropstab-user-email"
+              scope: GLOBAL
+              secret: "${DROPSTAB_USER_EMAIL}"
+              description: "DropsTab account email"
+          - string:
+              id: "dropstab-user-password"
+              scope: GLOBAL
+              secret: "${DROPSTAB_USER_PASSWORD}"
+              description: "DropsTab account password"
+          - string:
+              id: "dropstab-user-token"
+              scope: GLOBAL
+              secret: "${DROPSTAB_USER_TOKEN}"
+              description: "Bearer accessToken from POST /portfolio/login"
+          - string:
+              id: "dropstab-portfolio-id"
+              scope: GLOBAL
+              secret: "${DROPSTAB_PORTFOLIO_ID}"
+              description: "Override for id.portfolio (the special test portfolio)"
+          - string:
+              id: "telegram-bot-token"
+              scope: GLOBAL
+              secret: "${TELEGRAM_BOT_TOKEN:-placeholder}"
+              description: "Telegram bot token from @BotFather"
+          - string:
+              id: "telegram-chat-id"
+              scope: GLOBAL
+              secret: "${TELEGRAM_CHAT_ID:-placeholder}"
+              description: "Telegram target chat / channel id"
+
+tool:
+  allure:
+    installations:
+      - name: "allure"
+        # CLI is baked into the Docker image at /opt/allure-${ALLURE_VERSION}.
+        # Keep the home in sync with the Dockerfile's ALLURE_VERSION arg.
+        home: "/opt/allure-2.30.0"
+
+jobs:
+  - script: >
+      pipelineJob('DropsTabApiTests') {
+          description('DropsTab API tests — Jenkinsfile from GitHub master')
+          parameters {
+              choiceParam(
+                  'TEST_SUITE',
+                  ['test', 'positive_test', 'negative_test', 'auth_test', 'portfolio_test', 'transaction_test'],
+                  'Gradle task to run. "test" = full suite. The others filter by JUnit @Tag.'
+              )
+          }
+          definition {
+              cpsScm {
+                  scm {
+                      git {
+                          remote {
+                              url 'https://github.com/kwlad1k/DropsTabApiTests.git'
+                          }
+                          branch '*/master'
+                      }
+                  }
+                  scriptPath 'Jenkinsfile'
+                  lightweight(true)
+              }
+          }
+      }

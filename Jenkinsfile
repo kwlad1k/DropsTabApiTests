@@ -8,6 +8,7 @@
 //    dropstab-user-email     DropsTab email
 //    dropstab-user-password  DropsTab password
 //    dropstab-user-token     Bearer accessToken from POST /portfolio/login
+//    dropstab-portfolio-id   id.portfolio override       (e.g. "2193621")
 //    telegram-bot-token      BotFather token             (e.g. "1234:AA…")
 //    telegram-chat-id        Target chat / channel id    (e.g. "-1001234567890")
 //
@@ -59,7 +60,8 @@ pipeline {
                     string(credentialsId: 'dropstab-user-name',     variable: 'USER_NAME_DT'),
                     string(credentialsId: 'dropstab-user-email',    variable: 'USER_EMAIL'),
                     string(credentialsId: 'dropstab-user-password', variable: 'USER_PASSWORD'),
-                    string(credentialsId: 'dropstab-user-token',    variable: 'USER_TOKEN')
+                    string(credentialsId: 'dropstab-user-token',    variable: 'USER_TOKEN'),
+                    string(credentialsId: 'dropstab-portfolio-id',  variable: 'PORTFOLIO_ID')
                 ]) {
                     // Single-quoted heredoc → no Groovy interpolation, secrets stay
                     // as shell variables and never appear in build logs verbatim.
@@ -69,7 +71,8 @@ pipeline {
                             -Duser.name.dt="${USER_NAME_DT}" \
                             -Duser.email="${USER_EMAIL}" \
                             -Duser.password="${USER_PASSWORD}" \
-                            -Duser.token="${USER_TOKEN}"
+                            -Duser.token="${USER_TOKEN}" \
+                            -Did.portfolio="${PORTFOLIO_ID}"
                     '''
                 }
             }

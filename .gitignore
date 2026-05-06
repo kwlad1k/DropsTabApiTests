@@ -24,3 +24,6 @@ gradlew.bat
 
 ### Config ###
 auth.properties
+
+### Local Jenkins ###
+jenkins-local/.env
