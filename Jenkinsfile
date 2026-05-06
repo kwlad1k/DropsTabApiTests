@@ -98,10 +98,19 @@ pipeline {
             // Telegram notification with QA-Guru-style donut chart via QuickChart.io.
             // Best-effort — missing creds / network errors do NOT fail the build.
             script {
-                def tr      = currentBuild.rawBuild.getAction(hudson.tasks.junit.TestResultAction)
-                def total   = tr?.totalCount   ?: 0
-                def failed  = tr?.failCount    ?: 0
-                def skipped = tr?.skipCount    ?: 0
+                // Parse JUnit XML directly (avoids pipeline-sandbox restrictions on
+                // currentBuild.rawBuild.getAction).
+                def counts = sh(returnStdout: true, script: '''
+                    set +e
+                    cd build/test-results/test 2>/dev/null || { echo "0 0 0"; exit 0; }
+                    total=$(grep -ho '<testcase' *.xml 2>/dev/null | wc -l | tr -d ' ')
+                    failed=$(grep -ho '<failure' *.xml 2>/dev/null | wc -l | tr -d ' ')
+                    skipped=$(grep -ho '<skipped' *.xml 2>/dev/null | wc -l | tr -d ' ')
+                    echo "${total:-0} ${failed:-0} ${skipped:-0}"
+                ''').trim().split()
+                def total   = counts[0] as int
+                def failed  = counts[1] as int
+                def skipped = counts[2] as int
                 def passed  = total - failed - skipped
 
                 def status = currentBuild.currentResult ?: 'UNKNOWN'
