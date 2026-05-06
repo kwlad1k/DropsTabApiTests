@@ -10,7 +10,7 @@ ARG ALLURE_VERSION=2.30.0
 USER root
 RUN set -eux; \
     apt-get update; \
-    apt-get install -y --no-install-recommends curl unzip ca-certificates; \
+    apt-get install -y --no-install-recommends curl unzip ca-certificates python3; \
     rm -rf /var/lib/apt/lists/*; \
     # Gradle
     curl -fsSL "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -o /tmp/gradle.zip; \

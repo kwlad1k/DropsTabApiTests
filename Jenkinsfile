@@ -98,20 +98,40 @@ pipeline {
             // Telegram notification with QA-Guru-style donut chart via QuickChart.io.
             // Best-effort — missing creds / network errors do NOT fail the build.
             script {
-                // Parse JUnit XML directly (avoids pipeline-sandbox restrictions on
-                // currentBuild.rawBuild.getAction).
-                def counts = sh(returnStdout: true, script: '''
-                    set +e
-                    cd build/test-results/test 2>/dev/null || { echo "0 0 0"; exit 0; }
-                    total=$(grep -ho '<testcase' *.xml 2>/dev/null | wc -l | tr -d ' ')
-                    failed=$(grep -ho '<failure' *.xml 2>/dev/null | wc -l | tr -d ' ')
-                    skipped=$(grep -ho '<skipped' *.xml 2>/dev/null | wc -l | tr -d ' ')
-                    echo "${total:-0} ${failed:-0} ${skipped:-0}"
-                ''').trim().split()
-                def total   = counts[0] as int
-                def failed  = counts[1] as int
-                def skipped = counts[2] as int
-                def passed  = total - failed - skipped
+                // Parse JUnit XML for counts + failed test names. Python is reliable
+                // for XML; falls back to "0 0 0" if no results yet.
+                def parsed = sh(returnStdout: true, script: '''
+                    python3 - <<'PY'
+import xml.etree.ElementTree as ET
+import glob, sys
+total = failed = skipped = 0
+fails = []
+for f in glob.glob('build/test-results/test/*.xml'):
+    try:
+        for tc in ET.parse(f).getroot().iter('testcase'):
+            total += 1
+            if tc.find('failure') is not None or tc.find('error') is not None:
+                failed += 1
+                cls = tc.attrib.get('classname', '').split('.')[-1]
+                name = tc.attrib.get('name', '')
+                line = f'{cls} > {name}'.replace('\\n', ' ').replace('\\r', ' ')
+                fails.append(line[:80])
+            elif tc.find('skipped') is not None:
+                skipped += 1
+    except Exception as e:
+        print(f'parse err {f}: {e}', file=sys.stderr)
+print(f'{total} {failed} {skipped}')
+for line in fails[:5]:
+    print(line)
+PY
+                ''').trim()
+                def lines = parsed ? parsed.split('\n') : ['0 0 0']
+                def hdr = lines[0].trim().split(/\s+/)
+                int total   = (hdr.size() > 0 ? hdr[0] as int : 0)
+                int failed  = (hdr.size() > 1 ? hdr[1] as int : 0)
+                int skipped = (hdr.size() > 2 ? hdr[2] as int : 0)
+                int passed  = total - failed - skipped
+                def failNames = lines.size() > 1 ? lines[1..-1] : []
 
                 def status = currentBuild.currentResult ?: 'UNKNOWN'
                 def emoji  = [
@@ -121,30 +141,45 @@ pipeline {
                     ABORTED:  '⏹️'
                 ].get(status, 'ℹ️')
 
-                // Format duration as HH:mm:ss.SSS to match QA-Guru output.
-                def durMs = currentBuild.duration ?: (System.currentTimeMillis() - currentBuild.startTimeInMillis)
-                def durFmt = String.format('%02d:%02d:%02d.%03d',
-                    (long)(durMs / 3600000),
-                    (long)((durMs / 60000) % 60),
-                    (long)((durMs / 1000) % 60),
-                    (long)(durMs % 1000))
+                // Duration in pure long arithmetic (no BigDecimal mod, sandbox-safe).
+                long durMs = ((currentBuild.duration ?: (System.currentTimeMillis() - currentBuild.startTimeInMillis)) as long)
+                long durSec = durMs.intdiv(1000L)
+                long msPart = durMs - durSec * 1000L
+                long h = durSec.intdiv(3600L)
+                long m = (durSec - h * 3600L).intdiv(60L)
+                long s = durSec - h * 3600L - m * 60L
+                def durFmt = String.format('%02d:%02d:%02d.%03d', h, m, s, msPart)
 
-                def passedPct = total > 0 ? (passed * 100.0d / total).round(1) : 0
+                def passedPctStr = total > 0 ? String.format('%.1f', passed * 100.0d / total) : '0.0'
 
-                // QuickChart.io donut: green/red/grey wedges, total in center,
-                // legend on the right, job name as title.
-                def chartJson = """{"type":"doughnut","data":{"labels":["passed","failed","skipped"],"datasets":[{"data":[${passed},${failed},${skipped}],"backgroundColor":["#4caf50","#f44336","#9e9e9e"],"borderWidth":0}]},"options":{"title":{"display":true,"text":"${env.JOB_NAME}","fontSize":18},"plugins":{"doughnutlabel":{"labels":[{"text":"${total}","font":{"size":60,"weight":"bold"}}]},"datalabels":{"display":false}},"legend":{"position":"right"},"cutoutPercentage":70}}"""
+                // Donut: title = "<JOB_NAME> #<BUILD>". Total in center.
+                def chartTitle = "${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                def chartJson = """{"type":"doughnut","data":{"labels":["passed","failed","skipped"],"datasets":[{"data":[${passed},${failed},${skipped}],"backgroundColor":["#4caf50","#f44336","#9e9e9e"],"borderWidth":0}]},"options":{"title":{"display":true,"text":"${chartTitle}","fontSize":18},"plugins":{"doughnutlabel":{"labels":[{"text":"${total}","font":{"size":60,"weight":"bold"}}]},"datalabels":{"display":false}},"legend":{"position":"right"},"cutoutPercentage":70}}"""
                 def chartUrl = 'https://quickchart.io/chart?width=600&height=400&c=' +
                                java.net.URLEncoder.encode(chartJson, 'UTF-8')
 
-                def caption = """${emoji} *${status}*
-*Results:*
-*Environment:* Окружение Prod, коллекция тестов `${params?.TEST_SUITE ?: 'test'}`
-*Comment:* Результат API тестов
-*Duration:* ${durFmt}
-*Total scenarios:* ${total}
-*Total passed:* ${passed} (${passedPct} %)
-*Report available at the link:* ${env.BUILD_URL}allure"""
+                // Build a richer caption: status + counts + failure list + 2 links.
+                def cap = new StringBuilder()
+                cap << "${emoji} *${status}* — `${env.JOB_NAME}` #${env.BUILD_NUMBER}\n"
+                cap << "*Suite:* `${params?.TEST_SUITE ?: 'test'}`\n"
+                cap << "*Duration:* ${durFmt}\n"
+                cap << "\n"
+                cap << "📊 *Results* (${total} total):\n"
+                cap << "  ✅ passed: *${passed}* (${passedPctStr}%)\n"
+                if (failed > 0)  cap << "  ❌ failed: *${failed}*\n"
+                if (skipped > 0) cap << "  ⏭ skipped: *${skipped}*\n"
+                if (failNames && failNames.size() > 0 && failNames[0]) {
+                    cap << "\n*Failures:*\n"
+                    failNames.each { String name ->
+                        if (name?.trim()) cap << "  • `${name}`\n"
+                    }
+                    if (failed > failNames.size()) {
+                        cap << "  …и ещё ${failed - failNames.size()}\n"
+                    }
+                }
+                cap << "\n🔗 [Build](${env.BUILD_URL}) · [Allure](${env.BUILD_URL}allure) · [Console](${env.BUILD_URL}console)"
+
+                def caption = cap.toString()
 
                 catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
                     withCredentials([

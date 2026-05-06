@@ -51,6 +51,20 @@ docker compose up -d                 # picks up new env, JCasC re-reads creds
 docker compose down -v               # removes the dropstab_jenkins_home volume
 ```
 
+## Sharing the Telegram links
+
+The Build / Allure links in Telegram alerts point to `JENKINS_URL` from
+`.env`. By default that's `http://localhost:8080` — works only on this
+machine. To make the links clickable for the whole group:
+
+- Expose Jenkins via [ngrok](https://ngrok.com): `ngrok http 8080`,
+  copy the HTTPS URL into `JENKINS_URL` in `.env`, then `docker compose up -d`.
+- Or [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/),
+  Tailscale Funnel, etc.
+
+`localhost` links sent to the group will render but only resolve on your
+own laptop — outsiders see "site can't be reached".
+
 ## Troubleshooting
 
 - **`Set DROPSTAB_USER_TOKEN in .env`** on `up` — `.env` is missing or a
