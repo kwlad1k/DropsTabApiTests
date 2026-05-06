@@ -159,27 +159,30 @@ PY
                                java.net.URLEncoder.encode(chartJson, 'UTF-8')
 
                 // Build a richer caption: status + counts + failure list + 2 links.
-                def cap = new StringBuilder()
-                cap << "${emoji} *${status}* — `${env.JOB_NAME}` #${env.BUILD_NUMBER}\n"
-                cap << "*Suite:* `${params?.TEST_SUITE ?: 'test'}`\n"
-                cap << "*Duration:* ${durFmt}\n"
-                cap << "\n"
-                cap << "📊 *Results* (${total} total):\n"
-                cap << "  ✅ passed: *${passed}* (${passedPctStr}%)\n"
-                if (failed > 0)  cap << "  ❌ failed: *${failed}*\n"
-                if (skipped > 0) cap << "  ⏭ skipped: *${skipped}*\n"
+                // Use list.add() + join — sandbox blocks StringBuilder.leftShift (<<).
+                def lines2 = []
+                lines2.add("${emoji} *${status}* — `${env.JOB_NAME}` #${env.BUILD_NUMBER}")
+                lines2.add("*Suite:* `${params?.TEST_SUITE ?: 'test'}`")
+                lines2.add("*Duration:* ${durFmt}")
+                lines2.add("")
+                lines2.add("📊 *Results* (${total} total):")
+                lines2.add("  ✅ passed: *${passed}* (${passedPctStr}%)")
+                if (failed > 0)  lines2.add("  ❌ failed: *${failed}*")
+                if (skipped > 0) lines2.add("  ⏭ skipped: *${skipped}*")
                 if (failNames && failNames.size() > 0 && failNames[0]) {
-                    cap << "\n*Failures:*\n"
+                    lines2.add("")
+                    lines2.add("*Failures:*")
                     failNames.each { String name ->
-                        if (name?.trim()) cap << "  • `${name}`\n"
+                        if (name?.trim()) lines2.add("  • `${name}`")
                     }
                     if (failed > failNames.size()) {
-                        cap << "  …и ещё ${failed - failNames.size()}\n"
+                        lines2.add("  …и ещё ${failed - failNames.size()}")
                     }
                 }
-                cap << "\n🔗 [Build](${env.BUILD_URL}) · [Allure](${env.BUILD_URL}allure) · [Console](${env.BUILD_URL}console)"
+                lines2.add("")
+                lines2.add("🔗 [Build](${env.BUILD_URL}) · [Allure](${env.BUILD_URL}allure) · [Console](${env.BUILD_URL}console)")
 
-                def caption = cap.toString()
+                def caption = lines2.join('\n')
 
                 catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
                     withCredentials([
