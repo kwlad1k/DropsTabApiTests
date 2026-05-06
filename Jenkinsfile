@@ -81,6 +81,11 @@ pipeline {
 
     post {
         always {
+            // Publish JUnit XML so the script block below can read pass/fail counts.
+            junit allowEmptyResults: true,
+                  skipPublishingChecks: true,
+                  testResults: 'build/test-results/test/*.xml'
+
             // Allure report — published from build/allure-results.
             allure([
                 includeProperties: false,
@@ -90,8 +95,15 @@ pipeline {
                 results: [[path: 'build/allure-results']]
             ])
 
-            // Telegram notification (best-effort; failure here doesn't fail the build).
+            // Telegram notification with QA-Guru-style donut chart via QuickChart.io.
+            // Best-effort — missing creds / network errors do NOT fail the build.
             script {
+                def tr      = currentBuild.rawBuild.getAction(hudson.tasks.junit.TestResultAction)
+                def total   = tr?.totalCount   ?: 0
+                def failed  = tr?.failCount    ?: 0
+                def skipped = tr?.skipCount    ?: 0
+                def passed  = total - failed - skipped
+
                 def status = currentBuild.currentResult ?: 'UNKNOWN'
                 def emoji  = [
                     SUCCESS:  '✅',
@@ -100,29 +112,45 @@ pipeline {
                     ABORTED:  '⏹️'
                 ].get(status, 'ℹ️')
 
-                def msg = """*DropsTab API Tests* ${emoji} *${status}*
-Suite: `${params.TEST_SUITE}`
-Build: [#${env.BUILD_NUMBER}](${env.BUILD_URL})
-Allure: [report](${env.BUILD_URL}allure)"""
+                // Format duration as HH:mm:ss.SSS to match QA-Guru output.
+                def durMs = currentBuild.duration ?: (System.currentTimeMillis() - currentBuild.startTimeInMillis)
+                def durFmt = String.format('%02d:%02d:%02d.%03d',
+                    (long)(durMs / 3600000),
+                    (long)((durMs / 60000) % 60),
+                    (long)((durMs / 1000) % 60),
+                    (long)(durMs % 1000))
 
-                // Best-effort — missing telegram-* credentials, network failure,
-                // or Telegram API errors do NOT fail the build.
+                def passedPct = total > 0 ? (passed * 100.0d / total).round(1) : 0
+
+                // QuickChart.io donut: green/red/grey wedges, total in center,
+                // legend on the right, job name as title.
+                def chartJson = """{"type":"doughnut","data":{"labels":["passed","failed","skipped"],"datasets":[{"data":[${passed},${failed},${skipped}],"backgroundColor":["#4caf50","#f44336","#9e9e9e"],"borderWidth":0}]},"options":{"title":{"display":true,"text":"${env.JOB_NAME}","fontSize":18},"plugins":{"doughnutlabel":{"labels":[{"text":"${total}","font":{"size":60,"weight":"bold"}}]},"datalabels":{"display":false}},"legend":{"position":"right"},"cutoutPercentage":70}}"""
+                def chartUrl = 'https://quickchart.io/chart?width=600&height=400&c=' +
+                               java.net.URLEncoder.encode(chartJson, 'UTF-8')
+
+                def caption = """${emoji} *${status}*
+*Results:*
+*Environment:* Окружение Prod, коллекция тестов `${params?.TEST_SUITE ?: 'test'}`
+*Comment:* Результат API тестов
+*Duration:* ${durFmt}
+*Total scenarios:* ${total}
+*Total passed:* ${passed} (${passedPct} %)
+*Report available at the link:* ${env.BUILD_URL}allure"""
+
                 catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
                     withCredentials([
                         string(credentialsId: 'telegram-bot-token', variable: 'TG_TOKEN'),
                         string(credentialsId: 'telegram-chat-id',   variable: 'TG_CHAT_ID')
                     ]) {
-                        // Pass the message via TG_MSG env so curl can URL-encode it
-                        // — keeps Markdown / newlines / backticks intact.
-                        withEnv(["TG_MSG=${msg}"]) {
+                        withEnv(["TG_PHOTO=${chartUrl}", "TG_CAPTION=${caption}"]) {
                             sh '''
                                 set +e
-                                curl -sS --max-time 15 \
-                                    -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+                                curl -sS --max-time 20 \
+                                    -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendPhoto" \
                                     --data-urlencode "chat_id=${TG_CHAT_ID}" \
+                                    --data-urlencode "photo=${TG_PHOTO}" \
                                     --data-urlencode "parse_mode=Markdown" \
-                                    --data-urlencode "disable_web_page_preview=true" \
-                                    --data-urlencode "text=${TG_MSG}" \
+                                    --data-urlencode "caption=${TG_CAPTION}" \
                                     > /dev/null
                                 exit 0
                             '''
