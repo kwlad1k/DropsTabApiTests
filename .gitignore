@@ -27,3 +27,5 @@ auth.properties
 
 ### Local Jenkins ###
 jenkins-local/.env
+jenkins-local/.tunnel-state
+jenkins-local/.tunnel.log

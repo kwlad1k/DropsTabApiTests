@@ -51,19 +51,40 @@ docker compose up -d                 # picks up new env, JCasC re-reads creds
 docker compose down -v               # removes the dropstab_jenkins_home volume
 ```
 
-## Sharing the Telegram links
+## Sharing the Telegram links (clickable for the whole group)
 
-The Build / Allure links in Telegram alerts point to `JENKINS_URL` from
-`.env`. By default that's `http://localhost:8080` — works only on this
-machine. To make the links clickable for the whole group:
+`http://localhost:8080` only resolves on your own machine. To make Build /
+Allure / Console links clickable for everyone in the Telegram group, expose
+Jenkins through a tunnel.
 
-- Expose Jenkins via [ngrok](https://ngrok.com): `ngrok http 8080`,
-  copy the HTTPS URL into `JENKINS_URL` in `.env`, then `docker compose up -d`.
-- Or [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/),
-  Tailscale Funnel, etc.
+### Quick path — Cloudflare quick tunnel (no account, ~30 sec)
 
-`localhost` links sent to the group will render but only resolve on your
-own laptop — outsiders see "site can't be reached".
+```bash
+brew install cloudflared      # one-time
+cd jenkins-local
+./tunnel.sh start             # starts cloudflared, updates JENKINS_URL, restarts Jenkins
+./tunnel.sh status            # shows current URL + PID
+./tunnel.sh stop              # kills tunnel, reverts JENKINS_URL to localhost
+```
+
+After `start`, every Telegram alert from then on will use the public
+`*.trycloudflare.com` URL. The tunnel runs as a background process attached
+to your shell — closing the terminal keeps it running, but a reboot kills
+it (run `./tunnel.sh start` again afterwards).
+
+**Caveat:** quick tunnels get a fresh random URL on every `./tunnel.sh start`.
+
+### Stable path — named Cloudflare tunnel
+
+If you want a permanent URL like `jenkins.example.com`:
+1. Add a domain to a free Cloudflare account
+2. `cloudflared tunnel login` (browser auth)
+3. `cloudflared tunnel create dropstab-jenkins`
+4. `cloudflared tunnel route dns dropstab-jenkins jenkins.example.com`
+5. Replace `tunnel --url ...` in `tunnel.sh` with `tunnel run dropstab-jenkins`
+6. Optionally set up as a launchd service for auto-start at boot
+
+Alternatives: ngrok, Tailscale Funnel, ssh -R reverse-tunnel to a VPS.
 
 ## Troubleshooting
 
