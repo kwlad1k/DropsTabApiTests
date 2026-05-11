@@ -64,6 +64,21 @@ credentials:
               scope: GLOBAL
               secret: "${TELEGRAM_CHAT_ID:-placeholder}"
               description: "Telegram target chat / channel id"
+          - string:
+              id: "allure-testops-endpoint"
+              scope: GLOBAL
+              secret: "${ALLURE_TESTOPS_ENDPOINT:-placeholder}"
+              description: "Allure TestOps base URL (e.g. https://allure.autotests.cloud)"
+          - string:
+              id: "allure-testops-token"
+              scope: GLOBAL
+              secret: "${ALLURE_TESTOPS_TOKEN:-placeholder}"
+              description: "Allure TestOps API token (Settings -> API tokens)"
+          - string:
+              id: "allure-testops-project-id"
+              scope: GLOBAL
+              secret: "${ALLURE_TESTOPS_PROJECT_ID:-placeholder}"
+              description: "Allure TestOps project id (numeric)"
 
 tool:
   allure:

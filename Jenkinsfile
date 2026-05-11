@@ -86,6 +86,36 @@ pipeline {
                   skipPublishingChecks: true,
                   testResults: 'build/test-results/test/*.xml'
 
+            // Upload allure-results to Allure TestOps as a new launch.
+            // Skipped silently if creds are missing/placeholder.
+            // --allow-insecure-connection: temporary while QA Guru's SSL cert is
+            // being renewed (May 2026). Remove once allure.autotests.cloud has a
+            // valid cert.
+            script {
+                catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
+                    withCredentials([
+                        string(credentialsId: 'allure-testops-endpoint',   variable: 'ALLURE_ENDPOINT'),
+                        string(credentialsId: 'allure-testops-token',      variable: 'ALLURE_TOKEN'),
+                        string(credentialsId: 'allure-testops-project-id', variable: 'ALLURE_PROJECT_ID')
+                    ]) {
+                        sh '''
+                            set +e
+                            if [ ! -d "build/allure-results" ] || [ "$ALLURE_TOKEN" = "placeholder" ] || [ -z "$ALLURE_TOKEN" ]; then
+                                echo "Skip Allure TestOps upload (no results or no token)"
+                                exit 0
+                            fi
+                            allurectl --allow-insecure-connection upload \
+                                --endpoint "$ALLURE_ENDPOINT" \
+                                --token "$ALLURE_TOKEN" \
+                                --project-id "$ALLURE_PROJECT_ID" \
+                                --launch-name "${JOB_NAME} #${BUILD_NUMBER}" \
+                                build/allure-results || echo "allurectl upload failed (continuing)"
+                            exit 0
+                        '''
+                    }
+                }
+            }
+
             // Allure report — published from build/allure-results.
             allure([
                 includeProperties: false,

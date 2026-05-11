@@ -6,6 +6,7 @@ FROM jenkins/jenkins:lts-jdk17
 
 ARG GRADLE_VERSION=8.14.4
 ARG ALLURE_VERSION=2.30.0
+ARG ALLURECTL_VERSION=2.18.0
 
 USER root
 RUN set -eux; \
@@ -23,7 +24,17 @@ RUN set -eux; \
     tar -xzf /tmp/allure.tgz -C /opt; \
     ln -s /opt/allure-${ALLURE_VERSION}/bin/allure /usr/local/bin/allure; \
     rm /tmp/allure.tgz; \
-    allure --version
+    allure --version; \
+    # allurectl (Allure TestOps uploader). Auto-detect arch.
+    arch="$(dpkg --print-architecture)"; \
+    case "$arch" in \
+        amd64) ACTL_ARCH=amd64 ;; \
+        arm64) ACTL_ARCH=arm64 ;; \
+        *)     ACTL_ARCH=amd64 ;; \
+    esac; \
+    curl -fsSL "https://github.com/allure-framework/allurectl/releases/download/${ALLURECTL_VERSION}/allurectl_linux_${ACTL_ARCH}" -o /usr/local/bin/allurectl; \
+    chmod +x /usr/local/bin/allurectl; \
+    allurectl --version
 USER jenkins
 
 # Pre-install plugins. Jenkins reads /usr/share/jenkins/ref/plugins.txt at
