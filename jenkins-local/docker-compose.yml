@@ -28,6 +28,10 @@ services:
       # Telegram (optional — leave empty to disable; pipeline tolerates missing values)
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
       TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+      # Allure TestOps (optional — leave ALLURE_TESTOPS_TOKEN empty to disable upload)
+      ALLURE_TESTOPS_ENDPOINT: ${ALLURE_TESTOPS_ENDPOINT:-https://allure.autotests.cloud}
+      ALLURE_TESTOPS_TOKEN: ${ALLURE_TESTOPS_TOKEN:-}
+      ALLURE_TESTOPS_PROJECT_ID: ${ALLURE_TESTOPS_PROJECT_ID:-4230}
 
 volumes:
   jenkins_home:

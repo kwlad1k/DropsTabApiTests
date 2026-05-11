@@ -104,9 +104,10 @@ pipeline {
                                 echo "Skip Allure TestOps upload (no results or no token)"
                                 exit 0
                             fi
-                            allurectl --allow-insecure-connection upload \
+                            allurectl --insecure \
                                 --endpoint "$ALLURE_ENDPOINT" \
                                 --token "$ALLURE_TOKEN" \
+                                upload \
                                 --project-id "$ALLURE_PROJECT_ID" \
                                 --launch-name "${JOB_NAME} #${BUILD_NUMBER}" \
                                 build/allure-results || echo "allurectl upload failed (continuing)"
