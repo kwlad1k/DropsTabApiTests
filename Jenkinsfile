@@ -223,13 +223,26 @@ PY
                         withEnv(["TG_PHOTO=${chartUrl}", "TG_CAPTION=${caption}"]) {
                             sh '''
                                 set +e
-                                curl -sS --max-time 20 \
-                                    -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendPhoto" \
-                                    --data-urlencode "chat_id=${TG_CHAT_ID}" \
-                                    --data-urlencode "photo=${TG_PHOTO}" \
-                                    --data-urlencode "parse_mode=Markdown" \
-                                    --data-urlencode "caption=${TG_CAPTION}" \
-                                    > /dev/null
+                                # Longer timeout + retry: Telegram's API can be slow/blocked
+                                # from some ISPs. Log the response so failures are visible
+                                # in build console instead of being silently dropped.
+                                for attempt in 1 2 3; do
+                                    RESP=$(curl -sS --max-time 60 \
+                                        --connect-timeout 10 \
+                                        --retry 0 \
+                                        -w "\\nHTTP=%{http_code}" \
+                                        -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendPhoto" \
+                                        --data-urlencode "chat_id=${TG_CHAT_ID}" \
+                                        --data-urlencode "photo=${TG_PHOTO}" \
+                                        --data-urlencode "parse_mode=Markdown" \
+                                        --data-urlencode "caption=${TG_CAPTION}" 2>&1)
+                                    echo "Telegram attempt #${attempt}: ${RESP}" | head -3
+                                    if echo "$RESP" | grep -q '"ok":true'; then
+                                        echo "Telegram alert delivered."
+                                        break
+                                    fi
+                                    sleep 5
+                                done
                                 exit 0
                             '''
                         }
